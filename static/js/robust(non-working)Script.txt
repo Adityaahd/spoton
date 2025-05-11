@@ -1,0 +1,118 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light-mode';
+    document.body.classList.add(currentTheme);
+
+    const navbar = document.querySelector('.navbar');
+    if (currentTheme === 'dark-mode') {
+        navbar.classList.add('dark-mode');
+        themeToggle.checked = true;
+    } else {
+        navbar.classList.add('light-mode');
+    }
+
+    themeToggle.addEventListener('change', () => {
+        if (themeToggle.checked) {
+            document.body.classList.replace('light-mode', 'dark-mode');
+            navbar.classList.replace('light-mode', 'dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        } else {
+            document.body.classList.replace('dark-mode', 'light-mode');
+            navbar.classList.replace('dark-mode', 'light-mode');
+            localStorage.setItem('theme', 'light-mode');
+        }
+    });
+
+    // Add the onclick event to the recommendations button
+    const recommendationsBtn = document.getElementById('recommendations-btn');
+    recommendationsBtn.addEventListener('click', () => {
+        window.location.href = 'recommendations';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Variable to keep track of the currently playing audio element
+    let currentlyPlayingAudio = null;
+
+    // Function to stop the currently playing audio
+    function stopCurrentlyPlayingAudio() {
+        if (currentlyPlayingAudio) {
+            currentlyPlayingAudio.pause();
+            currentlyPlayingAudio.currentTime = 0;
+        }
+    }
+
+    // Attach event listeners to audio elements
+    document.querySelectorAll('.track-preview').forEach(audio => {
+        audio.addEventListener('play', () => {
+            if (currentlyPlayingAudio && currentlyPlayingAudio !== audio) {
+                stopCurrentlyPlayingAudio();
+            }
+            currentlyPlayingAudio = audio;
+        });
+
+        audio.addEventListener('ended', () => {
+            currentlyPlayingAudio = null;
+        });
+    });
+});
+
+function showAddToPlaylistPopup(trackId) {
+    const popup = document.getElementById('playlist-popup');
+    const playlistList = document.getElementById('playlist-list');
+    playlistList.innerHTML = ''; // Clear existing items
+
+    fetch('/api/get_playlists')
+        .then(response => response.json())
+        .then(data => {
+            if (data.playlists) {
+                data.playlists.forEach(playlist => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<button onclick="addToPlaylist('${trackId}', '${playlist.id}')">${playlist.name}</button>`;
+                    playlistList.appendChild(listItem);
+                });
+            }
+            popup.style.display = 'block';
+        });
+}
+
+function hideAddToPlaylistPopup() {
+    document.getElementById('playlist-popup').style.display = 'none';
+}
+
+function createNewPlaylist(trackId) {
+    const playlistName = prompt("Enter new playlist name:");
+    if (playlistName) {
+        fetch('/api/create_playlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: playlistName })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.playlist) {
+                showAddToPlaylistPopup(trackId); // Refresh popup with new playlist and pass trackId
+            }
+        });
+    }
+}
+
+function addToPlaylist(trackId, playlistId) {
+    fetch('/api/add_to_playlist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ track_id: trackId, playlist_id: playlistId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("Track added to playlist!");
+        hideAddToPlaylistPopup();
+    });
+}
+
+/***************************************** */
+

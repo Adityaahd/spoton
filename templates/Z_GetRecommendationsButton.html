@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Recommendations Button</title>
+    <style>
+        .recommend-btn-container {
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .recommend-btn {
+            position: relative;
+            background: linear-gradient(135deg, #1DB954, #1ED760);
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            padding: 20px 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            outline: none;
+            position: relative;
+        }
+
+        .recommend-btn .btn-text {
+            z-index: 2;
+            transition: opacity 0.3s ease;
+            margin-right: 15px;
+        }
+
+        .recommend-btn .btn-icon {
+            z-index: 2;
+            font-size: 28px;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: -50px; /* Initially positioned outside the button */
+            transform: translateY(-50%) scale(0.9);
+            transition: transform 0.3s ease, left 0.6s ease;
+        }
+
+        .recommend-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #1ED760, #1DB954);
+            box-shadow: 0px 0px 25px rgba(30, 215, 96, 0.6);
+        }
+
+        .recommend-btn:active {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #158443, #1DB954);
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background: #fff;
+            width: 0;
+            z-index: 3;
+            transition: width 2s ease-out;
+        }
+
+        .recommend-btn.loading .progress-bar {
+            width: 100%;
+        }
+
+        /* Search Animation */
+        .recommend-btn.loading .btn-text {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .recommend-btn.loading .btn-icon {
+            opacity: 1;
+            left: calc(50% - 14px); /* Move to center */
+            transform: translateY(-50%) scale(1.1);
+            animation: searching 2s infinite ease-in-out;
+        }
+
+        /* Searching movement keyframes */
+        @keyframes searching {
+            0% {
+                left: 10%; 
+                top: 30%;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            25% {
+                left: 60%;
+                top: 40%;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            50% {
+                left: 80%;
+                top: 70%;
+                transform: translate(-50%, -50%) scale(1.15);
+            }
+            75% {
+                left: 40%;
+                top: 60%;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                left: 10%;
+                top: 50%;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="recommend-btn-container">
+        <button id="recommend-btn" class="recommend-btn">
+            <span class="btn-text">Get Recommendations</span>
+            <ion-icon name="search-outline" class="btn-icon"></ion-icon>
+            <div class="progress-bar"></div>
+        </button>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        document.getElementById('recommend-btn').addEventListener('click', function() {
+            const button = this;
+            
+            // Add loading state to show progress bar animation and start magnifying glass animation
+            button.classList.add('loading');
+            
+            // Simulate fetching recommendations (replace with actual logic)
+            setTimeout(() => {
+                button.classList.remove('loading');
+                // Add additional logic to display recommendations here
+            }, 3000); // Simulate 3 seconds of loading
+            
+            // Play click sound for user feedback
+            const clickSound = new Audio('click-sound.mp3');
+            clickSound.play();
+        });
+    </script>
+</body>
+</html>

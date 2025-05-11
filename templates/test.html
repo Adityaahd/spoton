@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Awhad | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #141e30, #243b55);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease-out;
+        }
+        header h1 {
+            font-size: 2.5em;
+            color: #ff00ff;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        nav {
+            display: flex;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s;
+        }
+        nav a:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ff00ff;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        nav a:hover:before {
+            visibility: visible;
+            width: 100%;
+        }
+        nav a:hover {
+            color: #ff00ff;
+        }
+        /* Intro section styles */
+        .intro {
+            padding: 200px 0;
+            text-align: center;
+            background: url('https://source.unsplash.com/1600x900/?technology') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .intro-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .intro h2 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: textGlow 2s infinite alternate;
+        }
+        .intro p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+        /* About section styles */
+        .about {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.8);
+            margin: 50px 0;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .about h2 {
+            font-size: 3em;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: fadeInLeft 2s ease-in-out;
+        }
+        .about h2:after {
+            content: '';
+            width: 50px;
+            height: 5px;
+            background: #ff00ff;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeInLeft 2s ease-in-out;
+        }
+        .about p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            animation: fadeInLeft 2s ease-in-out 0.5s;
+        }
+        /* Projects section styles */
+        .projects {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.8);
+            margin: 50px 0;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .projects h2 {
+            font-size: 3em;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: fadeInRight 2s ease-in-out;
+        }
+        .projects h2:after {
+            content: '';
+            width: 50px;
+            height: 5px;
+            background: #ff00ff;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeInRight 2s ease-in-out;
+        }
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            width: 300px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+        .project-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 0, 150, 0.3), rgba(0, 204, 255, 0.3));
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+        .project-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            animation: fadeInUp 2s ease-in-out;
+        }
+        .project-card p {
+            font-size: 1em;
+            animation: fadeInUp 2s ease-in-out 0.5s;
+        }
+        /* Skills section styles */
+        .skills {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.8);
+            margin: 50px 0;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .skills h2 {
+            font-size: 3em;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: fadeInLeft 2s ease-in-out;
+        }
+        .skills h2:after {
+            content: '';
+            width: 50px;
+            height: 5px;
+            background: #ff00ff;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeInLeft 2s ease-in-out;
+        }
+        .skills ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            animation: fadeInUp 2s ease-in-out;
+        }
+        .skills li {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: #ff00ff;
+            font-size: 1.2em;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .skills li:hover {
+            transform: translateY(-10px);
+            background: #00ccff;
+        }
+        /* Footer styles */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            clear: both;
+        }
+        .social-icons {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .social-icons a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #ff00ff;
+        }
+        /* Keyframes animations */
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(255, 0, 255, 0.9);
+            }
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        /* Media queries */
+        @media (max-width: 768px) {
+            .intro {
+                padding: 100px 0;
+            }
+            .projects, .skills, .about {
+                padding: 80px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Aditya Awhad</h1>
+            <nav>
+                <a href="#intro">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro">
+        <div class="intro-overlay"></div>
+        <div class="container">
+            <h2>Hello, I'm Aditya Awhad</h2>
+            <p>A passionate IT engineering student from Mumbai University, exploring the world of technology, adventure, music, and literature.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I am Aditya Awhad, currently pursuing IT engineering at Mumbai University. I have a keen interest in technology and enjoy exploring new concepts, building tech projects, and solving problems creatively.</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project-card">
+                <h3>SpotOn</h3>
+                <p>A unique website that recommends songs based on users' Spotify listening history. Features include user profiles, social sharing, custom themes, and lyrics display.</p>
+            </div>
+            <div class="project-card">
+                <h3>Explore India</h3>
+                <p>An interactive travel guide to the hidden gems of India, featuring an integrated map, user reviews, and adventure recommendations for outdoor enthusiasts.</p>
+            </div>
+            <div class="project-card">
+                <h3>Book Haven</h3>
+                <p>A modern online platform for book lovers to discover, review, and discuss their favorite books. Includes a recommendation system based on user preferences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <ul>
+                <li>Python</li>
+                <li>JavaScript</li>
+                <li>HTML & CSS</li>
+                <li>Flask</li>
+                <li>React</li>
+                <li>SQL</li>
+                <li>Git & GitHub</li>
+                <li>API Integration</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <p>Feel free to get in touch with me through the following channels:</p>
+            <div class="social-icons">
+                <a href="https://github.com/AdityaAwhad" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/adityaawhad" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/AdityaAwhad" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Aditya Awhad. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

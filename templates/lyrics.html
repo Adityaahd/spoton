@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lyrics for {{ track.name }} by {{ track.artists[0].name }}</h1>
+<pre>{{ lyrics }}</pre>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container profile-page">
+    <div class="profile-header text-center">
+        {% if user.images and user.images[0] %}
+        <img src="{{ user.images[0].url }}" alt="Profile Picture" class="profile-picture rounded-circle">
+        {% else %}
+        <img src="static\images\default-profile-picture.jpg" alt="Default Profile Picture" class="profile-picture rounded-circle">
+        {% endif %}
+        <h1>{{ user.display_name }}</h1>
+    </div>
+
+    <div class="top-tracks">
+        <h2>Top Tracks</h2>
+        <div class="row">
+            {% for track in top_tracks %}
+            <div class="col-md-4 mb-4">
+                <div class="card track-card">
+                    <img src="{{ track.album.images[0].url }}" class="card-img-top" alt="{{ track.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ track.name }}</h5>
+                        <p class="card-text">{{ track.artists[0].name }}</p>
+                        <div class="track-actions">
+                            <a href="{{ url_for('lyrics', track_id=track.id) }}" class="btn btn-sm btn-primary">View Lyrics</a>
+                            <a href="https://twitter.com/intent/tweet?text=Check out this song: {{ track.name }} by {{ track.artists[0].name }}&url={{ track.external_urls.spotify }}" target="_blank" class="btn btn-sm btn-twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ track.external_urls.spotify }}" target="_blank" class="btn btn-sm btn-facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </div>
+                        {% if track.preview_url %}
+                        <audio class="track-preview mt-2" controls>
+                            <source src="{{ track.preview_url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        {% else %}
+                        <p class="mt-2">Preview not available</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="playlists">
+        <h2>Playlists</h2>
+        <ul class="list-group">
+            {% for playlist in playlists %}
+            <li class="list-group-item">
+                <a href="{{ playlist.external_urls.spotify }}" target="_blank">{{ playlist.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="recent-history">
+        <h2>Recent Listening History</h2>
+        <div class="row">
+            {% for track in recent_tracks %}
+            <div class="col-md-4 mb-4">
+                <div class="card track-card">
+                    <img src="{{ track.track.album.images[0].url }}" class="card-img-top" alt="{{ track.track.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ track.track.name }}</h5>
+                        <p class="card-text">{{ track.track.artists[0].name }}</p>
+                        <div class="track-actions">
+                            <a href="{{ url_for('lyrics', track_id=track.track.id) }}" class="btn btn-sm btn-primary">View Lyrics</a>
+                            <a href="https://twitter.com/intent/tweet?text=Check out this song: {{ track.track.name }} by {{ track.track.artists[0].name }}&url={{ track.track.external_urls.spotify }}" target="_blank" class="btn btn-sm btn-twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ track.track.external_urls.spotify }}" target="_blank" class="btn btn-sm btn-facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </div>
+                        {% if track.track.preview_url %}
+                        <audio class="track-preview mt-2" controls>
+                            <source src="{{ track.track.preview_url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        {% else %}
+                        <p class="mt-2">Preview not available</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

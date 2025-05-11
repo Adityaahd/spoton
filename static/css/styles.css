@@ -1,0 +1,729 @@
+/* General styles */
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.card {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Navbar */
+.navbar-dark.bg-dark {
+    background-color: #222 !important;
+    border-bottom: 2px solid #1DB954;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    color: #ddd !important;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #1DB954 !important;
+    background-color: #333;
+}
+
+/* Welcome section */
+.welcome {
+    position: relative;
+    padding: 100px 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.welcome-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/static/images/background.jpg'); /* Add your background image here */
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    z-index: -1;
+}
+
+.animated-text {
+    animation: fadeIn 2s ease-in-out;
+}
+
+.animated-button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.animated-button:hover {
+    background-color: #1aa34a;
+}
+
+/* Floating Icons */
+.floating-icons {
+    position: relative;
+    margin-top: 20px;
+}
+
+.note-icon {
+    position: absolute;
+    font-size: 2rem;
+    color: #1DB954;
+    animation: float 6s infinite ease-in-out;
+}
+
+.note-icon:nth-child(1) {
+    left: 10%;
+    animation-duration: 4s;
+}
+
+.note-icon:nth-child(2) {
+    left: 45%;
+    animation-duration: 5s;
+}
+
+.note-icon:nth-child(3) {
+    left: 80%;
+    animation-duration: 6s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Styles for the popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+.btn-primary {
+    background: #1db954; /* Spotify green */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #1ed760;
+}
+
+@media (max-width: 600px) {
+    .popup-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+}
+
+/* Dark mode */
+body.light-mode {
+    background-color: #f5f5f5;
+    color: #000;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.navbar-dark.bg-dark.light-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+.navbar-dark.bg-dark.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+.navbar-dark.bg-dark.dark-mode .nav-link {
+    color: #fff !important;
+}
+
+.navbar-dark.bg-dark.dark-mode .nav-link:hover {
+    color: #1DB954 !important;
+    background-color: #333;
+}
+
+.navbar-dark.bg-dark.dark-mode .form-check-label {
+    color: #fff !important;
+}
+
+/* Footer */
+.footer {
+    background-color: #222;
+    color: #ddd;
+}
+
+/* Animations */
+.animated-text {
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animated-button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.animated-button:hover {
+    background-color: #1aa34a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+}
+
+/* Make sure to adjust button styles as well */
+.btn-primary.dark-mode {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary.dark-mode:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Profile Page Styles */
+.profile-page {
+    padding-top: 2rem;
+}
+
+.profile-header {
+    margin-bottom: 2rem;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 5px solid #1DB954;
+    margin-bottom: 1rem;
+}
+
+.profile-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.top-tracks, .playlists, .recent-history {
+    margin-bottom: 2rem;
+}
+
+.track-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.track-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.track-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.btn-twitter {
+    background-color: #1DA1F2;
+    color: white;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+    color: white;
+}
+
+/* Card Titles */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-header h1 {
+        font-size: 2rem;
+    }
+
+    .track-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .track-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Discover Page Styles */
+.discover-page {
+    padding-top: 2rem;
+}
+
+.section-header {
+    margin-bottom: 2rem;
+}
+
+.new-releases, .genres-moods, .top-charts {
+    margin-bottom: 2rem;
+}
+
+.album-card, .category-card, .track-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.album-card:hover, .category-card:hover, .track-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.track-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.btn-twitter {
+    background-color: #1DA1F2;
+    color: white;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+    color: white;
+}
+
+/* Card Titles */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .track-card, .album-card, .category-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .track-card, .album-card, .category-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* General Styles */
+body.light-mode {
+    --background-color: #fff;
+    --text-color: #000;
+    --button-background: #1db954;
+    --button-background-hover: #1ed760;
+    --popup-background: #fff;
+    --popup-text-color: #000;
+    --border-color: #ddd;
+}
+
+body.dark-mode {
+    --background-color: #121212;
+    --text-color: #fff;
+    --button-background: #1db954;
+    --button-background-hover: #1ed760;
+    --popup-background: #282828;
+    --popup-text-color: #fff;
+    --border-color: #444;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+}
+
+/* Styles for the popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: var(--popup-background);
+    color: var(--popup-text-color);
+    border-radius: 15px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--popup-text-color);
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: var(--button-background);
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.playlist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.playlist-list li {
+    display: flex;
+    justify-content: center;
+}
+
+.playlist-list button {
+    background: var(--button-background);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    width: 100%;
+    max-width: 90%;
+    text-align: center;
+    outline: none;
+}
+
+.playlist-list button:hover {
+    background: var(--button-background-hover);
+    transform: scale(1.05);
+}
+
+.btn-primary {
+    background: var(--button-background);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.2s;
+    outline: none;
+}
+
+.btn-primary:hover {
+    background: var(--button-background-hover);
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .popup-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+}
+
+/* Spotify-Styled Minimalist Like Button */
+.like-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle translucent background */
+    border: 2px solid rgba(179, 179, 179, 0.3); /* Light border for visibility */
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Light shadow for subtle depth */
+  }
+  
+  /* Heart icon styling */
+  .like-icon {
+    width: 24px;
+    height: 24px;
+    fill: none; /* No fill for the initial heart state */
+    stroke: #b3b3b3; /* Light grey stroke for visibility in the default state */
+    stroke-width: 2;
+    transition: stroke 0.3s ease, transform 0.2s ease, fill 0.3s ease;
+  }
+  
+  /* Hover Effect: slight scale up and background color change */
+  .like-button:hover {
+    transform: scale(1.1);
+    background-color: rgba(29, 185, 84, 0.1); /* Light Spotify green on hover */
+    border-color: rgba(29, 185, 84, 0.3); /* Greenish border on hover */
+  }
+  
+  /* Active state: filled heart and deeper shadow */
+  .like-button.active {
+    background-color: rgba(29, 185, 84, 0.2); /* Darker green background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Deeper shadow for active state */
+    border-color: rgba(29, 185, 84, 0.5); /* Thicker green border */
+  }
+  
+  .like-button.active .like-icon {
+    fill: #1DB954; /* Spotify green for the active state */
+    stroke: none; /* Remove stroke and fully fill the heart */
+    transform: scale(1.1); /* Slight scale up for visual feedback */
+  }
+  
+  /* Subtle bounce animation on click */
+  .like-button:active {
+    transform: scale(0.95); /* Button presses down slightly */
+  }
+  
+  /* Optional: light background for hover */
+  .like-button:hover .like-icon {
+    stroke: #ffffff; /* White stroke on hover to make it stand out */
+  }
+  
+  .like-button.active:hover .like-icon {
+    fill: #17a848; /* Slightly darker green for hover */
+  }
+  
+  /* Icon Stroke Animation */
+  .like-icon path {
+    stroke: #b3b3b3; /* Grey outline for the heart */
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 120;
+    stroke-dashoffset: 0;
+  }
+  
+  .like-button.active .like-icon path {
+    stroke-dashoffset: 120;
+    animation: fillHeart 0.5s ease forwards;
+  }
+  
+  @keyframes fillHeart {
+    0% {
+      fill: none;
+      stroke-dashoffset: 120;
+    }
+    100% {
+      fill: #1DB954; /* Spotify green fill when active */
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  /* Focus outline for accessibility */
+  .like-button:focus {
+    outline: none;
+    border: 2px solid rgba(29, 185, 84, 0.5); /* Green focus border */
+  }
+
+/* Hide initially */
+.hidden {
+    display: none;
+}
+
+/* Magnifying glass animation */
+.magnifying-glass-icon {
+    display: inline-block;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.magnifying-glass-icon.animate-search {
+    opacity: 1;
+    transform: translateX(-50px) rotate(20deg); /* Example animation */
+    animation: hover-around 2s infinite;
+}
+
+/* Search Hover Effect */
+@keyframes hover-around {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(20px, -10px); }
+    50% { transform: translate(-20px, -10px); }
+    75% { transform: translate(20px, 10px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    background-color: #e0e0e0;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #1db954;
+    width: 0%;
+    transition: width 0.3s ease;
+}

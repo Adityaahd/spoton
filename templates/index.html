@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="welcome text-center">
+    <div class="welcome-background"></div>
+    <h1 class="animated-text fadeInDown">Welcome to SpotOn</h1>
+    <p class="animated-text fadeInUp">Discover new music, get recommendations based on your listening history, and more!</p>
+
+    <!-- Modified Get Recommendations Button -->
+    <div class="recommendation-container">
+        <button class="animated-button btn btn-primary" id="recommendations-btn">
+            <span class="button-text">Get Recommendations</span>
+            <span class="magnifying-glass-icon">
+                <i class="fa fa-search"></i>
+            </span>
+        </button>
+        <!-- Progress Bar -->
+        <div class="progress-bar hidden">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <div class="floating-icons">
+        <i class="fa fa-music note-icon" aria-hidden="true"></i>
+        <i class="fa fa-headphones note-icon" aria-hidden="true"></i>
+        <i class="fa fa-play-circle note-icon" aria-hidden="true"></i>
+    </div>
+</div>
+{% endblock %}

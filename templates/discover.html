@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container discover-page">
+    <div class="section-header text-center">
+        <h1>Discover New Music</h1>
+    </div>
+
+    <div class="new-releases">
+        <h2>New Releases</h2>
+        <div class="row">
+            {% for album in new_releases %}
+            <div class="col-md-4 mb-4">
+                <div class="card album-card">
+                    <img src="{{ album.images[0].url }}" class="card-img-top" alt="{{ album.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ album.name }}</h5>
+                        <p class="card-text">{{ album.artists[0].name }}</p>
+                        {% if album.preview_url %}
+                        <audio class="track-preview mt-2" controls>
+                            <source src="{{ album.preview_url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        {% else %}
+                        <p class="text-muted">Preview not available</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="genres-moods">
+        <h2>Genres and Moods</h2>
+        <div class="row">
+            {% for category in genres_and_moods %}
+            <div class="col-md-4 mb-4">
+                <a href="{{ category.href }}" target="_blank">
+                    <div class="card category-card">
+                        <img src="{{ category.icons[0].url }}" class="card-img-top" alt="{{ category.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.name }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="top-charts">
+        <h2>Top Charts</h2>
+        <div class="row">
+            {% for track in top_charts %}
+            <div class="col-md-4 mb-4">
+                <div class="card track-card">
+                    <img src="{{ track.track.album.images[0].url }}" class="card-img-top" alt="{{ track.track.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ track.track.name }}</h5>
+                        <p class="card-text">{{ track.track.artists[0].name }}</p>
+                        <div class="track-actions">
+                            <a href="{{ url_for('lyrics', track_id=track.track.id) }}" class="btn btn-sm btn-primary">View Lyrics</a>
+                            <a href="https://twitter.com/intent/tweet?text=Check out this song: {{ track.track.name }} by {{ track.track.artists[0].name }}&url={{ track.track.external_urls.spotify }}" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-twitter"></i> Share on Twitter</a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ track.track.external_urls.spotify }}" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-facebook"></i> Share on Facebook</a>
+                        </div>
+                        {% if track.track.preview_url %}
+                        <audio class="track-preview mt-2" controls>
+                            <source src="{{ track.track.preview_url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        {% else %}
+                        <p class="text-muted">Preview not available</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
